@@ -127,7 +127,7 @@ MODAL_STYLE_VISIBLE = {
 app.layout = html.Div(
     style={"fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", "margin": "2rem"},
     children=[
-        html.H1("Speech Analysis Dashboard"),
+        html.H1("Saturday Bootstrap Dashboard"),
         html.H2("Transcripts", style={"marginTop": "1.5rem"}),
         dcc.Store(id="expanded-folders", data=[]),
         dcc.Store(id="selected-folder", data=""),
