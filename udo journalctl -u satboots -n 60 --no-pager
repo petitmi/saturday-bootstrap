@@ -1,0 +1,12 @@
+[0;1;31m×[0m satboots.service - Gunicorn instance for satboots Dash app
+     Loaded: loaded (/etc/systemd/system/satboots.service; enabled; vendor preset: enabled)
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Tue 2026-09-08 03:21:46 UTC; 1min 9s ago
+    Process: 8410 ExecStart=/var/www/projects/saturday-bootstrap/venv/bin/gunicorn --workers 3 --bind 127.0.0.1:8051 dash_app:server [0;1;31m(code=exited, status=1/FAILURE)[0m
+   Main PID: 8410 (code=exited, status=1/FAILURE)
+        CPU: 538ms
+
+Sep 08 03:21:46 racknerd-7230614 systemd[1]: satboots.service: Scheduled restart job, restart counter is at 5.
+Sep 08 03:21:46 racknerd-7230614 systemd[1]: Stopped Gunicorn instance for satboots Dash app.
+Sep 08 03:21:46 racknerd-7230614 systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185msatboots.service: Start request repeated too quickly.[0m
+Sep 08 03:21:46 racknerd-7230614 systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185msatboots.service: Failed with result 'exit-code'.[0m
+Sep 08 03:21:46 racknerd-7230614 systemd[1]: [0;1;31m[0;1;39m[0;1;31mFailed to start Gunicorn instance for satboots Dash app.[0m
