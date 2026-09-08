@@ -519,4 +519,4 @@ def save_title_edits(data, data_previous):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=8050)
+    app.run(debug=True, port=8051)
