@@ -33,7 +33,7 @@ TRANSCRIPT_SUFFIXES = {".txt", ".md"}
 
 WRAP_COLUMNS = {"priority_1", "priority_2", "priority_3", "overall_impression"}
 
-app = Dash(__name__, title="Speech Analysis Dashboard")
+app = Dash(__name__, title="Saturday Bootstrap Dashboard")
 server = app.server
 
 
