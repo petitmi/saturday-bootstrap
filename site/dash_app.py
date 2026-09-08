@@ -34,6 +34,7 @@ TRANSCRIPT_SUFFIXES = {".txt", ".md"}
 WRAP_COLUMNS = {"priority_1", "priority_2", "priority_3", "overall_impression"}
 
 app = Dash(__name__, title="Speech Analysis Dashboard")
+server = app.server
 
 
 def load_data() -> pd.DataFrame:
