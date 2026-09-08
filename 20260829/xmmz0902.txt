@@ -1,0 +1,612 @@
+[Yuchen Zhang] 19:21:02
+So what I want to present today is about something about the macroeconomics analysis. So this dashboard.
+
+[Yuchen Zhang] 19:21:14
+Um, helps us to…
+
+[Yuchen Zhang] 19:21:18
+assess the economy of a given country.
+
+[Yuchen Zhang] 19:21:22
+And it's like a diagnostic assessment to see where the country is doing well and where it's doing poorly.
+
+[Yuchen Zhang] 19:21:32
+bad badly.
+
+[Yuchen Zhang] 19:21:34
+And what's the issue?
+
+[Yuchen Zhang] 19:21:39
+on, uh, there.
+
+[Yuchen Zhang] 19:21:41
+And so the framework here I use.
+
+[Yuchen Zhang] 19:21:46
+is layered by five.
+
+[Yuchen Zhang] 19:21:50
+components.
+
+[Yuchen Zhang] 19:21:53
+There are four flows.
+
+[Yuchen Zhang] 19:21:55
+Meaning the how the.
+
+[Yuchen Zhang] 19:21:59
+how fast the economy is expanding.
+
+[Yuchen Zhang] 19:22:04
+And there's a stocks meaning.
+
+[Yuchen Zhang] 19:22:09
+How much wealth has a country accumulated? And the third one is structure, meaning how the economy of.
+
+[Yuchen Zhang] 19:22:25
+Country is composed of.
+
+[Yuchen Zhang] 19:22:27
+And the fourth one is dynamics. Dynamics means where this…
+
+[Yuchen Zhang] 19:22:36
+country is going in terms of its economic.
+
+[Yuchen Zhang] 19:22:44
+Outlook.
+
+[Yuchen Zhang] 19:22:46
+The fifth…
+
+[Yuchen Zhang] 19:22:49
+comment is vulnerabilities. And it's very straightforward name, meaning where.
+
+[Yuchen Zhang] 19:22:58
+The economy's weak point are.
+
+[Yuchen Zhang] 19:23:04
+And I will use Canada as an example to showcase the.
+
+[Yuchen Zhang] 19:23:11
+Uh, framework.
+
+[Yuchen Zhang] 19:23:12
+And to and to better.
+
+[Yuchen Zhang] 19:23:17
+showcase how Canada's economy is, I will also compare it with other G7 countries.
+
+[Yuchen Zhang] 19:23:27
+So I just filtered the G7 countries here.
+
+[Yuchen Zhang] 19:23:35
+So for so we can see from a flows.
+
+[Yuchen Zhang] 19:23:42
+Canada sits at the second place only of only.
+
+[Yuchen Zhang] 19:23:52
+less than the United States in terms of the real GDP growth.
+
+[Yuchen Zhang] 19:23:57
+And it seems like Canada has a really good.
+
+[Yuchen Zhang] 19:24:01
+economic growth.
+
+[Yuchen Zhang] 19:24:04
+But we can see from other indicators to verify whether it's true.
+
+[Yuchen Zhang] 19:24:13
+From CPI, Canada has some relatively high.
+
+[Yuchen Zhang] 19:24:19
+number of this.
+
+[Yuchen Zhang] 19:24:22
+It's almost similar, same as what United States has.
+
+[Yuchen Zhang] 19:24:30
+2.9. It's low, it's high.
+
+[Yuchen Zhang] 19:24:33
+And the unemployment rate
+
+[Yuchen Zhang] 19:24:36
+unemployment rate Canada is a second place is a second place and followed followed.
+
+[Yuchen Zhang] 19:24:46
+Following France.
+
+[Yuchen Zhang] 19:24:47
+it's also high. But for this one, I think it's not very comparable, because different country.
+
+[Yuchen Zhang] 19:24:58
+has different social, um, social, um.
+
+[Yuchen Zhang] 19:25:03
+nets, safety nets, and it impacts the unemployment rate. But from here, we can see that Canada doesn't have a very low unemployment rate.
+
+[Yuchen Zhang] 19:25:17
+the current account bank balance meaning it's a net revenue um.
+
+[Yuchen Zhang] 19:25:27
+from exports minus imports, and Canada has a negative number.
+
+[Yuchen Zhang] 19:25:35
+Here
+
+[Yuchen Zhang] 19:25:39
+fiscal balance. It's interesting that all the G7 countries have negative numbers of this indicator, and Canada also is in a moderate.
+
+[Yuchen Zhang] 19:25:55
+Uh, somewhere, si-si-somewhere moderate.
+
+[Yuchen Zhang] 19:26:00
+In the 7 countries.
+
+[Yuchen Zhang] 19:26:03
+And, um…
+
+[Yuchen Zhang] 19:26:04
+So from what we have seen here, we didn't find anything impressive or noteworthy.
+
+[Yuchen Zhang] 19:26:21
+Let's see the stocks.
+
+[Yuchen Zhang] 19:26:23
+Stocks, Canada, the government died.
+
+[Yuchen Zhang] 19:26:29
+Can I have some…
+
+[Yuchen Zhang] 19:26:31
+also sits in the middle.
+
+[Yuchen Zhang] 19:26:38
+Foreign exchange reserves.
+
+[Yuchen Zhang] 19:26:41
+It has the lowest foreign exchange reserves, meaning it has a relatively low leverage.
+
+[Yuchen Zhang] 19:26:53
+Um, on other…
+
+[Yuchen Zhang] 19:26:56
+Uh other economies.
+
+[Yuchen Zhang] 19:26:59
+So, uh, it will… when something… something unexpected happens, like the tariff stuff.
+
+[Yuchen Zhang] 19:27:08
+that is happening now, Canada has no reserves to work on.
+
+[Yuchen Zhang] 19:27:16
+to help to add to weight.
+
+[Yuchen Zhang] 19:27:21
+It's…
+
+[Yuchen Zhang] 19:27:23
+cards
+
+[Yuchen Zhang] 19:27:25
+It can't, uh, threaten U.S.
+
+[Yuchen Zhang] 19:27:29
+that it will sell their product.
+
+[Yuchen Zhang] 19:27:33
+their reserves, something like that, like what China has done.
+
+[Yuchen Zhang] 19:27:38
+And, uh, UK.
+
+[Yuchen Zhang] 19:27:39
+So that's a weakness point.
+
+[Yuchen Zhang] 19:27:44
+Gross external debt. It means some.
+
+[Yuchen Zhang] 19:27:50
+where? What? How much other con? How? How much other external entities has.
+
+[Yuchen Zhang] 19:28:01
+has purchased its.
+
+[Yuchen Zhang] 19:28:03
+bones.
+
+[Yuchen Zhang] 19:28:05
+And it's at the middle.
+
+[Yuchen Zhang] 19:28:10
+area.
+
+[Yuchen Zhang] 19:28:13
+Let's see the structure. Because G7 countries are all developed countries.
+
+[Yuchen Zhang] 19:28:21
+They all have high share of.
+
+[Yuchen Zhang] 19:28:26
+The services…
+
+[Yuchen Zhang] 19:28:28
+And the low share of agriculture.
+
+[Yuchen Zhang] 19:28:32
+And Canada has some…
+
+[Yuchen Zhang] 19:28:35
+The highest share of the industry sector.
+
+[Yuchen Zhang] 19:28:39
+In the G7.
+
+[Yuchen Zhang] 19:28:42
+Which is interesting.
+
+[Yuchen Zhang] 19:28:46
+as well and the conception and investment.
+
+[Yuchen Zhang] 19:28:54
+What?
+
+[Yuchen Zhang] 19:28:56
+I can't see what it is. Okay. Yeah. So.
+
+[赵一夫] 19:28:59
+Me too.
+
+[Yuchen Zhang] 19:29:03
+Here, the darker part is the household consumption, and the…
+
+[Yuchen Zhang] 19:29:10
+Lighter bar is the growth capital formation.
+
+[Yuchen Zhang] 19:29:15
+We can see that the United States has a really high household consumption. Actually, it has the highest amount across all the countries.
+
+[Yuchen Zhang] 19:29:26
+in the world.
+
+[Yuchen Zhang] 19:29:29
+Can I have some…
+
+[Yuchen Zhang] 19:29:32
+Also a moderate place here.
+
+[Yuchen Zhang] 19:29:35
+The gross…
+
+[Yuchen Zhang] 19:29:36
+capital formation compared to the United States is higher.
+
+[Yuchen Zhang] 19:29:44
+and Japan has a high highest.
+
+[Yuchen Zhang] 19:29:47
+share of this.
+
+[Yuchen Zhang] 19:29:51
+So, meaning that Canada is, um…
+
+[Yuchen Zhang] 19:29:56
+Has a relative um.
+
+[Yuchen Zhang] 19:29:58
+Good space, uh, place here.
+
+[Yuchen Zhang] 19:30:08
+Now we see there is also a trade openness.
+
+[Yuchen Zhang] 19:30:16
+Canada has some hazardous exports ranked the second place here.
+
+[Yuchen Zhang] 19:30:24
+Meaning Canada depends heavily on its export.
+
+[Yuchen Zhang] 19:30:31
+And this one.
+
+[Yuchen Zhang] 19:30:35
+It's so striking because Canada's.
+
+[Yuchen Zhang] 19:30:39
+Exports to a largest partner is.
+
+[Yuchen Zhang] 19:30:43
+Extremely high.
+
+[Yuchen Zhang] 19:30:46
+73% and followed by Japan.
+
+[Yuchen Zhang] 19:30:53
+who's only…
+
+[Yuchen Zhang] 19:30:54
+20% on this indicator.
+
+[Yuchen Zhang] 19:30:57
+Meaning, Canada is not only relying on its exports, and it relies.
+
+[Yuchen Zhang] 19:31:07
+greedily on one single country.
+
+[Yuchen Zhang] 19:31:10
+Which is the United States. So it has built on…
+
+[Yuchen Zhang] 19:31:16
+Vulnerability.
+
+[Yuchen Zhang] 19:31:20
+In terms of the tariff threatening.
+
+[Yuchen Zhang] 19:31:26
+And there's nothing.
+
+[Yuchen Zhang] 19:31:29
+here on the.
+
+[Yuchen Zhang] 19:31:31
+From the dynamics…
+
+[Yuchen Zhang] 19:31:35
+perspective, we see that the United States has invested the R&D.
+
+[Yuchen Zhang] 19:31:45
+Most
+
+[Yuchen Zhang] 19:31:48
+Yeah, you know, mostly.
+
+[Yuchen Zhang] 19:31:51
+But Canada only invested a little bit, just higher than Italy.
+
+[Yuchen Zhang] 19:31:59
+So this R&D expenditure is an indicator to see how the.
+
+[Yuchen Zhang] 19:32:08
+country's productivity will be like in the future.
+
+[Yuchen Zhang] 19:32:13
+So in this way, we can see Canada's productivity is already suffering, and with low R&D expenditure, we can't see a bright future here.
+
+[Yuchen Zhang] 19:32:32
+Old age dependency.
+
+[Yuchen Zhang] 19:32:34
+Actually, this is actually nice because I thought Canada has a very old age population, but turns out it.
+
+[Yuchen Zhang] 19:32:48
+Just it's it's almost best.
+
+[Yuchen Zhang] 19:32:53
+just less than the United States and it's better than all the other G7 countries.
+
+[Yuchen Zhang] 19:33:03
+Total fertility rate similar. It's not best, but it's not bad.
+
+[Yuchen Zhang] 19:33:10
+working age, population growth.
+
+[Yuchen Zhang] 19:33:14
+Canvas is zero. And…
+
+[Yuchen Zhang] 19:33:18
+And it's also not best or the worst.
+
+[Yuchen Zhang] 19:33:22
+But Japan has the worst.
+
+[Yuchen Zhang] 19:33:26
+number here.
+
+[Yuchen Zhang] 19:33:28
+United States is also healthy in this respect.
+
+[Yuchen Zhang] 19:33:34
+rule of law percentile. China has a very good reputation on the rule of law.
+
+[Yuchen Zhang] 19:33:42
+So this is a good side of this.
+
+[Yuchen Zhang] 19:33:50
+Also, this indicator represents the sustainability of the economy growth in Canada.
+
+[Yuchen Zhang] 19:34:02
+has some high number of this, which is a good sign.
+
+[Yuchen Zhang] 19:34:09
+It's a vulnerability.
+
+[Yuchen Zhang] 19:34:10
+Here, the private non-financial credit.
+
+[Yuchen Zhang] 19:34:14
+For this indicator, Canada has a.
+
+[Yuchen Zhang] 19:34:19
+highest…
+
+[Yuchen Zhang] 19:34:20
+Number.
+
+[Yuchen Zhang] 19:34:22
+Meaning that…
+
+[Yuchen Zhang] 19:34:24
+The households…
+
+[Yuchen Zhang] 19:34:28
+Suffering from the heavy debt.
+
+[Yuchen Zhang] 19:34:34
+That is not about the investment on the productivity.
+
+[Yuchen Zhang] 19:34:43
+And we can infer that.
+
+[Yuchen Zhang] 19:34:47
+It is because Canada's.
+
+[Yuchen Zhang] 19:34:50
+Realize it.
+
+[Yuchen Zhang] 19:34:52
+problem, and it's an affordability problem.
+
+[Yuchen Zhang] 19:34:56
+So because Canada's.
+
+[Yuchen Zhang] 19:34:59
+Housing is too expensive.
+
+[Yuchen Zhang] 19:35:03
+And the residents here have to carry a very high, heavy weight.
+
+[Yuchen Zhang] 19:35:11
+Amount of debt.
+
+[Yuchen Zhang] 19:35:13
+So that…
+
+[Yuchen Zhang] 19:35:15
+It's private non-financial credit is really high.
+
+[Yuchen Zhang] 19:35:22
+commodity share of exports, it is actually similar to the exports to the largest country.
+
+[Yuchen Zhang] 19:35:33
+it is another side of the export and it signals that Canada has an unhealthy.
+
+[Yuchen Zhang] 19:35:44
+trade on this, because the commodity means the raw materials and energy and stuff. If it's high, then it's not sustainable.
+
+[Yuchen Zhang] 19:35:56
+It's not what can be.
+
+[Yuchen Zhang] 19:36:00
+can be produced.
+
+[Yuchen Zhang] 19:36:04
+With techniques. It's just from nature. So.
+
+[Yuchen Zhang] 19:36:11
+So, um, from all of those, um, uh.
+
+[Yuchen Zhang] 19:36:16
+indicators, we have a picture that Canada.
+
+[Yuchen Zhang] 19:36:22
+has low productivity and relies deeply on exports. Now it's doing.
+
+[Yuchen Zhang] 19:36:31
+Okay. Not not, near.
+
+[Yuchen Zhang] 19:36:38
+Near bankrupt or anything, but it's.
+
+[Yuchen Zhang] 19:36:42
+It's not doing well.
+
+[Yuchen Zhang] 19:36:46
+And it has, uh, some, um…
+
+[Yuchen Zhang] 19:36:50
+real vulnerabilities and weaknesses in its economy.
+
+[Yuchen Zhang] 19:36:56
+And the situation is not.
+
+[Yuchen Zhang] 19:37:00
+Going better because the government invest investment is still.
+
+[Yuchen Zhang] 19:37:06
+Not on productivity.
+
+[Yuchen Zhang] 19:37:09
+And from some other from some other data that is not here.
+
+[Yuchen Zhang] 19:37:18
+You can see that Canada's GDP growth.
+
+[Yuchen Zhang] 19:37:26
+First, very high, but…
+
+[Yuchen Zhang] 19:37:29
+Its GDP per capita is the lowest in G7, meaning that the GDP is only driven by population growth rather than the.
+
+[Yuchen Zhang] 19:37:42
+productivity per capita.
+
+[Yuchen Zhang] 19:37:47
+Okay, that's all.
+
+[赵一夫] 19:37:55
+Okay, I don't have some complex question. However, I want to say maybe we can improve the…
+
+[赵一夫] 19:38:06
+this plot. For example, we can… we can use… we can show some… we can…
+
+[赵一夫] 19:38:16
+show all of the indicators of just one contract.
+
+[赵一夫] 19:38:21
+For example, for Canada, when we start to open the plot, we can see all the data and indicators of Canada.
+
+[赵一夫] 19:38:34
+Maybe we can, yeah.
+
+[Yuchen Zhang] 19:38:36
+You mean now it's showing indicator by indicator?
+
+[Yuchen Zhang] 19:38:44
+It's better to show country by country.
+
+[Yuchen Zhang] 19:38:49
+Yeah, month.
+
+[赵一夫] 19:38:50
+now the structure is, uh, compared among different countries, maybe for some supervisors, they want to focus on just one country. Yes, yeah, maybe we can…
+
+[Yuchen Zhang] 19:39:02
+Yeah, okay.
+
+[Yuchen Zhang] 19:39:03
+Yeah, that's a good idea as well. And also.
+
+[Yuchen Zhang] 19:39:10
+I realized that when I want to see the growth on one country, it has a.
+
+[赵一夫] 19:39:17
+Mmhm.
+
+[Yuchen Zhang] 19:39:20
+has a gap because it doesn't have have the time series data, just a panel data.
+
+[赵一夫] 19:39:26
+Mmm… I know, I know.
+
+[Yuchen Zhang] 19:39:28
+Yeah, that's also another gap.
+
+[赵一夫] 19:39:31
+Okay, okay, I know.
+
+[赵一夫] 19:39:34
+Okay.
+
+[Yuchen Zhang] 19:39:36
+Okay.
+
+[Yuchen Zhang] 19:39:38
+Okay, good, good, good.
+
+[赵一夫] 19:39:39
+Go ahead.
+
+[Yuchen Zhang] 19:39:40
+Amen here.
+
