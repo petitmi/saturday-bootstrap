@@ -14,9 +14,11 @@ upload/new-folder target. Click "Analyze" next to any .txt/.md file to run
 scripts/analyze_speech.py — re-analyzing the same file replaces its row.
 """
 import base64
+import json
 import os
 import subprocess
 import sys
+import threading
 from pathlib import Path
 
 import pandas as pd
@@ -27,9 +29,13 @@ from dash.exceptions import PreventUpdate
 WORKSPACE_ROOT = Path(__file__).resolve().parent.parent
 CSV_PATH = WORKSPACE_ROOT / "analysis.csv"
 SCRIPT_PATH = WORKSPACE_ROOT / "scripts" / "analyze_speech.py"
+# Job status files live on disk (not in-memory) so they're visible to every
+# gunicorn worker process, regardless of which one handles a given request.
+STATUS_DIR = WORKSPACE_ROOT / ".analysis_jobs"
 
-EXCLUDE_DIRS = {".venv", "site", "scripts", ".git", "__pycache__", "node_modules"}
+EXCLUDE_DIRS = {".venv", "venv", "site", "scripts", ".git", "__pycache__", "node_modules"}
 TRANSCRIPT_SUFFIXES = {".txt", ".md"}
+ANALYZE_SUFFIX = ".txt"
 
 WRAP_COLUMNS = {"priority_1", "priority_2", "priority_3", "overall_impression"}
 
@@ -79,34 +85,40 @@ def build_file_tree(dir_path: Path, expanded: set, selected: str) -> html.Ul:
                 )
             )
         elif entry.suffix.lower() in TRANSCRIPT_SUFFIXES:
-            is_analyzed = entry.name in analyzed_files
-            items.append(
-                html.Li(
-                    [
-                        html.Span(f"\U0001F4C4 {entry.name}", style={"marginRight": "0.75rem"}),
-                        html.Button(
-                            "Analyzed" if is_analyzed else "Analyze",
-                            id={"type": "analyze-btn", "index": rel},
-                            n_clicks=0,
-                            disabled=is_analyzed,
-                            style={
-                                "fontSize": "0.75rem",
-                                "padding": "0.15rem 0.6rem",
-                                "cursor": "not-allowed" if is_analyzed else "pointer",
-                                "border": "1px solid #d0d7de",
-                                "borderRadius": "4px",
-                                "background": "#2563eb" if is_analyzed else "#f6f8fa",
-                                "color": "white" if is_analyzed else "black",
-                            },
-                        ),
-                        html.Span(
-                            id={"type": "analyze-status", "index": rel},
-                            style={"marginLeft": "0.5rem", "fontSize": "0.8rem", "color": "#57606a"},
-                        ),
-                    ],
-                    style={"padding": "0.15rem 0"},
+            row_children = [
+                html.Span(
+                    f"\U0001F4C4 {entry.name}",
+                    id={"type": "file-view", "index": rel},
+                    n_clicks=0,
+                    style={"marginRight": "0.75rem", "cursor": "pointer"},
                 )
-            )
+            ]
+            if entry.suffix.lower() == ANALYZE_SUFFIX:
+                is_analyzed = entry.name in analyzed_files
+                row_children.append(
+                    html.Button(
+                        "Analyzed" if is_analyzed else "Analyze",
+                        id={"type": "analyze-btn", "index": rel},
+                        n_clicks=0,
+                        disabled=is_analyzed,
+                        style={
+                            "fontSize": "0.75rem",
+                            "padding": "0.15rem 0.6rem",
+                            "cursor": "not-allowed" if is_analyzed else "pointer",
+                            "border": "1px solid #d0d7de",
+                            "borderRadius": "4px",
+                            "background": "#2563eb" if is_analyzed else "#f6f8fa",
+                            "color": "white" if is_analyzed else "black",
+                        },
+                    )
+                )
+                row_children.append(
+                    html.Span(
+                        id={"type": "analyze-status", "index": rel},
+                        style={"marginLeft": "0.5rem", "fontSize": "0.8rem", "color": "#57606a"},
+                    )
+                )
+            items.append(html.Li(row_children, style={"padding": "0.15rem 0"}))
     return html.Ul(items, style={"listStyle": "none", "paddingLeft": "1.25rem"})
 
 
@@ -174,15 +186,15 @@ app.layout = html.Div(
         dcc.Loading(type="circle", children=[html.Div(id="file-tree")]),
         html.H2("Results", style={"marginTop": "2rem"}),
         html.P(
-            f"Data from {CSV_PATH.name} — click a column header to sort, use the search boxes to filter, "
-            "click a cell to view its full text.",
+            f"",
             style={"color": "#57606a"},
         ),
         dcc.Interval(id="refresh-interval", interval=5000),  # re-check the CSV every 5s
         dash_table.DataTable(
             id="results-table",
-            editable=True,
+            editable=False,
             sort_action="native",
+            sort_by=[{"column_id": "source_file", "direction": "desc"}],
             filter_action="native",
             page_size=15,
             style_table={"overflowX": "auto"},
@@ -198,7 +210,7 @@ app.layout = html.Div(
             },
             style_cell_conditional=[
                 {"if": {"column_id": col}, "cursor": "pointer"} for col in WRAP_COLUMNS
-            ] + [{"if": {"column_id": "title"}, "cursor": "text", "backgroundColor": "#fffbea"}],
+            ],
             style_header={"backgroundColor": "#f6f8fa", "fontWeight": "bold"},
             style_data={"border": "1px solid #d0d7de"},
         ),
@@ -289,7 +301,7 @@ def refresh_data(_):
     df = load_data()
     if df.empty:
         return [], []
-    columns = [{"name": col, "id": col, "editable": col == "title"} for col in df.columns]
+    columns = [{"name": col, "id": col} for col in df.columns]
     return df.to_dict("records"), columns
 
 
@@ -313,19 +325,48 @@ def toggle_modal(active_cell, _close_clicks, data):
 
 
 @app.callback(
+    Output("modal-body", "children", allow_duplicate=True),
+    Output("cell-modal", "style", allow_duplicate=True),
+    Input({"type": "file-view", "index": ALL}, "n_clicks"),
+    State({"type": "file-view", "index": ALL}, "id"),
+    prevent_initial_call=True,
+)
+def view_file_content(n_clicks_list, ids):
+    triggered_id = callback_context.triggered_id
+    if not triggered_id:
+        raise PreventUpdate
+    triggered_index = next((i for i, v in enumerate(ids) if v == triggered_id), None)
+    if triggered_index is None or not n_clicks_list[triggered_index]:
+        raise PreventUpdate
+    file_path = WORKSPACE_ROOT / triggered_id["index"]
+    if not file_path.is_file():
+        raise PreventUpdate
+    text = file_path.read_text(encoding="utf-8")
+    if file_path.suffix.lower() == ".md":
+        return html.Div(dcc.Markdown(text), style={"whiteSpace": "normal"}), MODAL_STYLE_VISIBLE
+    return text, MODAL_STYLE_VISIBLE
+
+
+@app.callback(
     Output("expanded-folders", "data"),
     Output("selected-folder", "data"),
     Input({"type": "folder-toggle", "index": ALL}, "n_clicks"),
     Input("select-root", "n_clicks"),
+    State({"type": "folder-toggle", "index": ALL}, "id"),
     State("expanded-folders", "data"),
     prevent_initial_call=True,
 )
-def toggle_folder(_folder_clicks, _root_clicks, expanded):
+def toggle_folder(folder_clicks, root_clicks, folder_ids, expanded):
     triggered_id = callback_context.triggered_id
     expanded = set(expanded or [])
     if triggered_id == "select-root":
+        if not root_clicks:
+            raise PreventUpdate
         return list(expanded), ""
     if not triggered_id:
+        raise PreventUpdate
+    triggered_index = next((i for i, folder_id in enumerate(folder_ids) if folder_id == triggered_id), None)
+    if triggered_index is None or not folder_clicks[triggered_index]:
         raise PreventUpdate
     rel = triggered_id["index"]
     if rel in expanded:
@@ -351,9 +392,8 @@ def rebuild_tree(expanded, selected, _version):
     Input("selected-folder", "data"),
 )
 def update_selected_folder_label(selected):
-    if not selected:
-        return "No folder selected — click a folder above to enable upload.", True
-    return f"Selected: {selected}/ (uploads and new folders go here)", False
+    target = f"{selected}/" if selected else "(workspace root)"
+    return f"Selected: {target} (uploads and new folders go here)", False
 
 
 @app.callback(
@@ -366,15 +406,15 @@ def update_selected_folder_label(selected):
     prevent_initial_call=True,
 )
 def save_upload(contents, filename, selected_folder, version):
-    if not contents or not filename or not selected_folder:
+    if not contents or not filename:
         raise PreventUpdate
-    target_dir = WORKSPACE_ROOT / selected_folder
+    target_dir = WORKSPACE_ROOT / selected_folder if selected_folder else WORKSPACE_ROOT
     target_dir.mkdir(parents=True, exist_ok=True)
     _header, encoded = contents.split(",", 1)
     data = base64.b64decode(encoded)
     dest = target_dir / filename
     dest.write_bytes(data)
-    status = f"Uploaded \u2192 {selected_folder}/{filename}"
+    status = f"Uploaded \u2192 {selected_folder + '/' if selected_folder else ''}{filename}"
     return status, (version or 0) + 1
 
 
@@ -411,7 +451,7 @@ def run_analyze_subprocess(rel_path: str, api_key: str) -> tuple[str, bool]:
             capture_output=True,
             text=True,
             cwd=WORKSPACE_ROOT,
-            timeout=180,
+            timeout=280,
             env=env,
         )
     except Exception as exc:  # noqa: BLE001 - surface any failure to the UI
@@ -420,6 +460,21 @@ def run_analyze_subprocess(rel_path: str, api_key: str) -> tuple[str, bool]:
     if result.returncode != 0:
         return f"Failed: {result.stderr.strip()[-300:]}", False
     return "\u2705 Analyzed", True
+
+
+def job_status_path(rel_path: str) -> Path:
+    STATUS_DIR.mkdir(exist_ok=True)
+    safe_name = rel_path.replace("/", "__")
+    return STATUS_DIR / f"{safe_name}.json"
+
+
+def run_analyze_background(rel_path: str, api_key: str) -> None:
+    """Runs in a daemon thread so the triggering HTTP request can return immediately
+    instead of blocking for the 30-60s the LLM call takes (which gunicorn's default
+    30s worker timeout would otherwise kill mid-request)."""
+    status_path = job_status_path(rel_path)
+    message, success = run_analyze_subprocess(rel_path, api_key)
+    status_path.write_text(json.dumps({"status": "done" if success else "error", "message": message}))
 
 
 @app.callback(
@@ -451,10 +506,8 @@ def request_analysis(n_clicks_list, btn_ids, current_statuses, version, api_key)
 
     outputs = list(current_statuses)
     outputs[triggered_index] = "Analyzing..."
-    status_text, success = run_analyze_subprocess(rel_path, api_key)
-    outputs[triggered_index] = status_text
-    new_version = (version or 0) + 1 if success else (version or 0)
-    return outputs, new_version, MODAL_STYLE_HIDDEN, ""
+    threading.Thread(target=run_analyze_background, args=(rel_path, api_key), daemon=True).start()
+    return outputs, (version or 0), MODAL_STYLE_HIDDEN, ""
 
 
 @app.callback(
@@ -481,11 +534,45 @@ def submit_api_key(n_clicks, api_key, pending_file, current_statuses, btn_ids, v
     target_index = next((i for i, b in enumerate(btn_ids) if b["index"] == pending_file), None)
     if target_index is not None:
         outputs[target_index] = "Analyzing..."
-    status_text, success = run_analyze_subprocess(pending_file, api_key)
-    if target_index is not None:
-        outputs[target_index] = status_text
-    new_version = (version or 0) + 1 if success else (version or 0)
-    return outputs, new_version, MODAL_STYLE_HIDDEN, api_key, ""
+    threading.Thread(target=run_analyze_background, args=(pending_file, api_key), daemon=True).start()
+    return outputs, (version or 0), MODAL_STYLE_HIDDEN, api_key, ""
+
+
+@app.callback(
+    Output({"type": "analyze-status", "index": ALL}, "children", allow_duplicate=True),
+    Output("tree-version", "data", allow_duplicate=True),
+    Input("refresh-interval", "n_intervals"),
+    State({"type": "analyze-status", "index": ALL}, "children"),
+    State({"type": "analyze-btn", "index": ALL}, "id"),
+    State("tree-version", "data"),
+    prevent_initial_call=True,
+)
+def poll_analysis_jobs(_n_intervals, current_statuses, btn_ids, version):
+    """Picks up background analysis jobs finishing on disk (works across gunicorn workers)."""
+    if not STATUS_DIR.exists():
+        raise PreventUpdate
+
+    outputs = list(current_statuses)
+    changed = False
+    bump_version = False
+    for i, btn_id in enumerate(btn_ids):
+        status_path = job_status_path(btn_id["index"])
+        if not status_path.exists():
+            continue
+        try:
+            info = json.loads(status_path.read_text())
+        except (json.JSONDecodeError, OSError):
+            continue
+        outputs[i] = info.get("message", "Done")
+        changed = True
+        if info.get("status") == "done":
+            bump_version = True
+        status_path.unlink(missing_ok=True)
+
+    if not changed:
+        raise PreventUpdate
+    new_version = (version or 0) + 1 if bump_version else (version or 0)
+    return outputs, new_version
 
 
 @app.callback(
@@ -499,24 +586,6 @@ def cancel_api_key_modal(n_clicks):
         raise PreventUpdate
     return MODAL_STYLE_HIDDEN, ""
 
-
-@app.callback(
-    Output("upload-status", "children", allow_duplicate=True),
-    Input("results-table", "data"),
-    State("results-table", "data_previous"),
-    prevent_initial_call=True,
-)
-def save_title_edits(data, data_previous):
-    if not data_previous or not data:
-        raise PreventUpdate
-    changed = any(
-        new_row.get("title") != old_row.get("title")
-        for new_row, old_row in zip(data, data_previous)
-    )
-    if not changed:
-        raise PreventUpdate
-    pd.DataFrame(data).to_csv(CSV_PATH, index=False)
-    return "Title updated \u2705"
 
 
 if __name__ == "__main__":
